@@ -1,0 +1,20 @@
+.Navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 4%;
+}
+
+.logo{
+    width: max(10%,80px);
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.logo-section p{
+    font-size: 16px;
+    margin-top: -15px;
+    font-weight: 600;
+}
+.profile{
+    width: max(5%,50px);
+}
