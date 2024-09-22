@@ -2,7 +2,7 @@
 import "../Navbar/NavBar.css";
 import { assets } from "../../assets/foodassets/frontend_assets/assets";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../Context/StoreContext";
 
 // --------------------------------------------------------
@@ -14,7 +14,14 @@ const NavBar = ({ setShowLogin }) => {
     /* Declare the state */
   }
 
-  const {getTotalCartAmount} = useContext(StoreContext); {/*get total no. of carts from cart.jsx */}
+  const {getTotalCartAmount,token,setToken} = useContext(StoreContext); {/*get total no. of carts from cart.jsx */}
+
+  const navigate = useNavigate();
+  const logout = () =>{
+      localStorage.removeItem("token");
+      setToken();
+      navigate("/");
+  }
   return (
     <>
       <div className="NavBar">
@@ -75,13 +82,30 @@ const NavBar = ({ setShowLogin }) => {
             </Link>
           </div>
 
-          <button
+{/* When user logged in then show the login iconon the navbar.It doesn't show the  sigin button*
+
+      --- we performed it by using token*/}
+
+      {!token?<button
             id="submit_button"
             type="button"
             onClick={() => setShowLogin(true)}
           >
             Sign In
           </button>
+        :<div className="navbar-profile">
+              <img src={assets.profile_icon} alt=""/>
+              <ul className="nav-profile-dropdown">
+                <li> <img id="dropdown-img" src={assets.bag_icon} alt=""/> <p>Orders</p></li>
+                <hr />
+                <li onClick={logout}> <img  id="dropdown-img" src={assets.logout_icon} alt=""/> <p>Logout</p></li>
+                
+              </ul> 
+          </div>
+      }
+
+{/* --- end of token ---  */}
+
         </div>
       </div>
     </>

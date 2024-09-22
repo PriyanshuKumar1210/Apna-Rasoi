@@ -5,7 +5,7 @@ import { loginUser , registerUser } from "../controlers/UserController.js";
 
 const userRouter =express.Router();
 
-userRouter.post("/register",registerUser)
-userRouter.post("/login",loginUser)
+userRouter.post("/register",registerUser) //define the register api
+userRouter.post("/login",loginUser) // define login api
 
 export default userRouter;

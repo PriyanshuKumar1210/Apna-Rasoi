@@ -1,6 +1,6 @@
 //  Here we will get the image,price,id or description of food as a props
 
-import React, { useContext} from "react";
+import { useContext } from "react";
 import "./FoodItem.css";
 import { assets } from "../../assets/foodassets/frontend_assets/assets";
 import { StoreContext } from "../../Context/StoreContext";
@@ -12,15 +12,13 @@ const FoodItem = ({ id, name, price, description, image }) => {
       //  it create the seperate state vartiaable for each product & that's not a good programming practices
       // to overcome from this problem we will create a cart object in our context
   
-      const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
-      // const cartItems = useContext(StoreContext);
-      // const addToCart = useContext(StoreContext);
-      // const removeFromCart = useContext(StoreContext);
+      const { cartItems, addToCart, removeFromCart ,url } = useContext(StoreContext);
+     
       return (
     <div className="food-item">
 
       <div className="food-item-img-container">
-        <img className="food-item-img" src={image} alt="some food items are here" />
+        <img className="food-item-img" src={url+"/images/"+image} alt="some food items are here" />
 
 {/* code to write food item into the cart  */}
 
@@ -36,7 +34,9 @@ const FoodItem = ({ id, name, price, description, image }) => {
 
                   <p>{cartItems[id]}</p>
                   <img onClick={()=> addToCart(id)} src={assets.add_icon_green} alt="" />
+
            {/* When user click on the green(+) icon then it count+1 of the food item*/}
+
                 </div>
         }
 
