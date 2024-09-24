@@ -4,7 +4,7 @@ import "../Cart/Cart.css";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
-  const { cartItems, food_list, removeFromCart,getTotalCartAmount } = useContext(StoreContext);
+  const { cartItems, food_list, removeFromCart,getTotalCartAmount,url } = useContext(StoreContext);
   const gstAmount =   (getTotalCartAmount()*18)/100;
   // const delieveryAmount = getTotalCartAmount()===0?0:40;
   
@@ -27,17 +27,22 @@ const Cart = () => {
 
 
         {food_list.map((item, index) => {
-          if (cartItems[item.id] > 0) {
+
+          if (cartItems[item['_id']] > 0) {
+            
             return (
+              
               <div key={index}>
 
                 <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="" />
+
+                  
+                  <img src={url+"/images/"+item.image} alt="" />
                   <p>{item.name}</p>
                   <p>₹{item.price}</p>
-                  <p>{cartItems[item.id]}</p>
-                  <p>₹{item.price * cartItems[item.id]}</p> {/*it find the total food amount */}
-                  <p className="cross" onClick={() => removeFromCart(item.id)}>
+                  <p>{cartItems[item['_id']]}</p>
+                  <p>₹{item.price * cartItems[item['_id']]}</p> {/*it find the total food amount */}
+                  <p className="cross" onClick={() => removeFromCart(item['_id'])}>
                     x
                   </p>
 

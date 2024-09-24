@@ -81,6 +81,7 @@ const registerUser = async(req,res) =>{
 
 // save the user in the database
             const user = await newUser.save()
+//creating the new token while passing the user id
             const token = createToken(user._id);
             res.json({success:true,token});
 

@@ -24,6 +24,7 @@ const LoginPopUp = ({ setShowLogin }) => {
         setData(data => ({...data,[name]:value}))
   }
 //creating the login()for user login
+//create the login & register api
 
   const onLogin = async (event) => {
     
